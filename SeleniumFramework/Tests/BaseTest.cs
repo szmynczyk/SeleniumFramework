@@ -2,18 +2,22 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace SeleniumFramework
+namespace SeleniumFramework.Tests
 {
     [TestFixture]
     public class BaseTest
     {
-        IWebDriver Driver;
+        public static IWebDriver Driver;
 
-        [Test]
-        public void GoToGoogleTest()
+        [OneTimeSetUp]
+        public void OneTimeSetup()
         {
             Driver = new ChromeDriver();
-            Driver.Url = @"https:\\google.com";
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
             Driver.Quit();
         }
     }
